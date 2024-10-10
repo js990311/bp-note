@@ -1,8 +1,12 @@
 import BPrecordForm from "./BPrecordForm";
+import Timer from "./Timer";
 
 const BPRecord = () => {
     return (
         <div className="record">
+            <div className="timer">
+                <Timer times={60*5}></Timer>
+            </div>
             <div>
                 <h4>1차측정</h4>
                 <BPrecordForm></BPrecordForm>
