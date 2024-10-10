@@ -1,5 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
+const toTimerStr = (num) => {
+    if(num < 10){
+        return '0'+num;
+    }else{
+        return num.toString();
+    }
+}
+
 const Timer = ({times}) => {
     const [time, setTime] = useState(times);
     const [isActive, setActive] = useState(false);
@@ -10,7 +18,15 @@ const Timer = ({times}) => {
             refInterval.current = setInterval(
                 () => {
                     console.log(`Timer work. now : ${time}`);
-                    setTime(per=>per-1)
+                    setTime(per=>{
+                        if(per===0){
+                            clearInterval(refInterval.current);
+                            setActive(false);
+                            return 0;
+                        }else{
+                            return per-1;
+                        }
+                    })
                 },1000
             )    
         }else{
@@ -26,7 +42,13 @@ const Timer = ({times}) => {
 
     return (
         <div onClick={onToggle}>
-            <span>{time}</span>
+            <span>
+                {toTimerStr(parseInt(time / 60))}
+            </span>
+            <span>:</span>
+            <span>
+                {toTimerStr(time % 60)}
+            </span>
         </div>
     )
 }

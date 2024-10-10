@@ -5,7 +5,7 @@ const BPRecord = () => {
     return (
         <div className="record">
             <div className="timer">
-                <Timer times={60*5}></Timer>
+                <Timer times={10}></Timer>
             </div>
             <div>
                 <h4>1차측정</h4>
