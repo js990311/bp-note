@@ -1,34 +1,34 @@
 import { useState } from 'react'
 import './BPrecordForm.css'
 
-const BPrecordForm = () => {
-    const [input, setInput] = useState({
-        systolic: '',
-        diastolic : '',
-    })
+const BPrecordForm = ({id, pressure, onUpdate}) => {
+    console.log(id, pressure);
+    const {systolic, diastolic} = pressure; 
 
-    const onUpdate = (e) => {
+    const onChange = (e) => {
         const {name, value} = e.target;
-        setInput({
-            [name] : value,
-            ...input
+        console.log(name, value);
+        onUpdate({
+            ...pressure,
+            [name] : value
         })
     }
 
     return (
         <div className="form">
+            <h4>{id+1}차 측정</h4>
             <div className='bp-input'>
                 <input type="text" 
                     name = "systolic"
-                    value={input.systolic} 
-                    onChange={onUpdate}
+                    value={systolic} 
+                    onChange={onChange}
                 />
                 <span> / </span>
                 <input 
                     type="text" 
                     name = "diastolic"
-                    value={input.diastolic} 
-                    onChange={onUpdate}
+                    value={diastolic} 
+                    onChange={onChange}
                 />
                 <button>
                     저장하기
