@@ -1,21 +1,34 @@
+import { useReducer } from "react";
 import InputDate from "../global/InputDate";
 import InputTime from "../global/InputTime";
-import BPrecordForm from "./BPrecordForm";
+import BPrecordForm from "./form/BPrecordForm";
 import Timer from "./Timer";
+import {dateTimeReducer} from '../global/UpdateDateTime';
 
 const BPRecord = () => {
+    const [dateTime, dateTimeDispatch] = useReducer(dateTimeReducer, {
+        date : '',
+        time : ''
+    });
+    console.log(dateTime);
     return (
         <div className="record">
             <Timer times={5*60}></Timer>
             <div>
                 <InputDate 
-                    onUpdate={(date)=>{
-                        console.log(date);
+                    onUpdate={(date) => {
+                        dateTimeDispatch(dateTime, {
+                            type : 'DATE',
+                            data : date
+                        })
                     }}
                 />
                 <InputTime 
                     onUpdate={(time)=>{
-                        console.log(time);
+                        dateTimeDispatch(dateTime, {
+                            type : 'TIME',
+                            data : time
+                        })
                     }}
                 />
             </div>
