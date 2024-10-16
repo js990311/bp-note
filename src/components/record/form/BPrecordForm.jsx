@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './BPrecordForm.css'
 
 const BPrecordForm = ({id, pressure, onUpdate}) => {
