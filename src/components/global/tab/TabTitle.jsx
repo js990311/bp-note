@@ -1,9 +1,9 @@
-const TabTitle = ({title, isActive, onClick, onDelete}) => {
+const TabTitle = ({title, isActive, onActive, onDelete}) => {
 
     return (
         <div 
             className={"tab-header " + (isActive ? "active-tab" : "")}
-            onClick={onClick}
+            onClick={onActive}
         >
             <p>{title}</p>
             <button onClick={onDelete}>X</button>

@@ -3,32 +3,56 @@ import TabTitle from './TabTitle';
 import TabContent from './TabContent';
 
 const Tab = () => {
-    const [activeTab, setActiveTab] = useState(0);
-    const [tabs, setTabs] = useState(
-        [
-            {
-                title : 'tab1',
-                content : 'tab1-content' 
-            },
-            {
-                title : 'tab2',
-                content : 'tab2-content' 
-            }
-        ]
-    );
-
-    useEffect(
-        ()=>{
-            if(tabs.length !== 0 && activeTab === tabs.length){
-                setActiveTab((prev)=>(prev-1));
-            }
+    
+    const [tabInfo, setTabInfo] = useState(
+        {
+            activeTab : 0,
+            tabs : [
+                {
+                    title : 'tab1',
+                    content : 'tab1-content' 
+                },
+                {
+                    title : 'tab2',
+                    content : 'tab2-content' 
+                }
+            ]    
         }
-        ,[tabs]    
-    )
-
+    );
+    console.log(tabInfo);
     const onDeleteTab = (index) => {
-        setTabs((prev) => {
-            return prev.filter((tab, idx) => idx !== index);
+        setTabInfo((prev) => {
+            let alterTabs = prev.tabs.filter((tab, idx) => idx !== index);
+            let alterActiveTab = prev.activeTab === alterTabs.length ? prev.activeTab-1 : prev.activeTab; 
+            let alter = {
+                ...prev,
+                activeTab : alterActiveTab,
+                tabs : alterTabs,
+            }
+            console.log('compare',alter, prev);
+            return alter;
+        });
+    }
+
+    const onActiveTab = (index) => {
+        console.log('onClick');
+        setTabInfo({
+            ...tabInfo,
+            activeTab: index
+        });
+    }
+
+    const onCreateTab = (newTab) => {
+        setTabInfo((prev) => {
+            let alterTabs = [
+                ...prev.tabs, 
+                newTab
+            ]
+            let alterActiveTab = alterTabs.length-1;
+            return {
+                activeTab : alterActiveTab,
+                tabs : alterTabs
+            }
         });
     }
 
@@ -36,16 +60,12 @@ const Tab = () => {
         <div>
             <div className="tab-header">
                 {
-                    tabs.map((tab, idx)=>(
+                    tabInfo.tabs.map((tab, idx)=>(
                         <TabTitle 
                             key={idx}
                             title={tab.title}
-                            isActive={activeTab === idx ? true : false}
-                            onClick={
-                                () => {
-                                    setActiveTab(idx);
-                                }
-                            }
+                            isActive={tabInfo.activeTab === idx ? true : false}
+                            onActive={() => {onActiveTab(idx);}}
                             onDelete={()=>{onDeleteTab(idx)}}
                         />
                     ))
@@ -53,13 +73,10 @@ const Tab = () => {
                 <button
                     onClick={
                         ()=>{
-                            setTabs([
-                                ...tabs,
-                                {
-                                    title : 'newTabs',
-                                    content : 'newTabs-content' 
-                                }                    
-                            ])
+                            onCreateTab( {
+                                title : 'newTabs',
+                                content : 'newTabs-content' 
+                            });
                         }
                     }
                 >
@@ -68,10 +85,10 @@ const Tab = () => {
             </div>
             <div className="tab-body">
                 {
-                    tabs.map((tab, idx)=>(
+                    tabInfo.tabs.map((tab, idx)=>(
                         <TabContent
                             key={idx}
-                            isActive={activeTab === idx ? true : false}
+                            isActive={tabInfo.activeTab === idx ? true : false}
                         >
                             {tab.content}
                         </TabContent>    
