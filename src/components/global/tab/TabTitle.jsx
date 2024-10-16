@@ -1,4 +1,4 @@
-const TabTitle = ({title, isActive, onClick}) => {
+const TabTitle = ({title, isActive, onClick, onDelete}) => {
 
     return (
         <div 
@@ -6,6 +6,7 @@ const TabTitle = ({title, isActive, onClick}) => {
             onClick={onClick}
         >
             <p>{title}</p>
+            <button onClick={onDelete}>X</button>
         </div>
     );
 }

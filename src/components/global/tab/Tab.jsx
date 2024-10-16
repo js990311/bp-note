@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import TabTitle from './TabTitle';
 import TabContent from './TabContent';
 
@@ -17,6 +17,21 @@ const Tab = () => {
         ]
     );
 
+    useEffect(
+        ()=>{
+            if(tabs.length !== 0 && activeTab === tabs.length){
+                setActiveTab((prev)=>(prev-1));
+            }
+        }
+        ,[tabs]    
+    )
+
+    const onDeleteTab = (index) => {
+        setTabs((prev) => {
+            return prev.filter((tab, idx) => idx !== index);
+        });
+    }
+
     return (
         <div>
             <div className="tab-header">
@@ -31,9 +46,25 @@ const Tab = () => {
                                     setActiveTab(idx);
                                 }
                             }
+                            onDelete={()=>{onDeleteTab(idx)}}
                         />
                     ))
                 }
+                <button
+                    onClick={
+                        ()=>{
+                            setTabs([
+                                ...tabs,
+                                {
+                                    title : 'newTabs',
+                                    content : 'newTabs-content' 
+                                }                    
+                            ])
+                        }
+                    }
+                >
+                    +
+                </button>
             </div>
             <div className="tab-body">
                 {
