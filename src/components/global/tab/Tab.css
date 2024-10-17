@@ -1,0 +1,25 @@
+.tab-header{
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    border-bottom: 1px #999 solid;
+    padding: 0px 10px;
+}
+
+.tab-header button{
+    border: none;
+    background-color: transparent;
+}
+
+.tab-title{
+    display: flex;
+    overflow-x: auto;
+}
+
+.active-tab{
+    border-top: 1px #999 solid;
+    border-left: 1px #999 solid;
+    border-right: 1px #999 solid;
+    border-radius: 5px 5px 0px 0px;
+}

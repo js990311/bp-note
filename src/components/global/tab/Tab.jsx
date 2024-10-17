@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import TabTitle from './TabTitle';
 import TabContent from './TabContent';
+import './Tab.css';
 
 const Tab = () => {
     
@@ -21,6 +22,7 @@ const Tab = () => {
     );
     console.log(tabInfo);
     const onDeleteTab = (index) => {
+        console.log('delete');
         setTabInfo((prev) => {
             let alterTabs = prev.tabs.filter((tab, idx) => idx !== index);
             let alterActiveTab = prev.activeTab === alterTabs.length ? prev.activeTab-1 : prev.activeTab; 
@@ -29,7 +31,6 @@ const Tab = () => {
                 activeTab : alterActiveTab,
                 tabs : alterTabs,
             }
-            console.log('compare',alter, prev);
             return alter;
         });
     }
@@ -57,7 +58,7 @@ const Tab = () => {
     }
 
     return (
-        <div>
+        <div className='tab'>
             <div className="tab-header">
                 {
                     tabInfo.tabs.map((tab, idx)=>(
