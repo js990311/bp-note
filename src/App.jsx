@@ -4,6 +4,7 @@ import BPRecord from './components/record/BPrecord'
 import BPHome from './components/BPHome'
 import NotFound from './components/NotFound'
 import Tab from './components/global/tab/Tab'
+import BPrecordTab from './components/record/form/BPrecordTab'
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
         <Route path='' element={<BPHome />}></Route>
         <Route path="/record" element={<BPRecord />}></Route>
         <Route path='*' element={<NotFound />}></Route>
-        <Route path='tabs' element={<Tab />}></Route>
+        <Route path='tabs' element={<BPrecordTab />}></Route>
       </Routes>
     </div>
   )
