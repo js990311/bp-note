@@ -19,6 +19,12 @@ const Timer = ({times}) => {
     const [isActive, setActive] = useState(false);
     const refInterval = useRef(null);
 
+    useEffect(()=>{
+        clearInterval(refInterval.current);
+        setTime(times);
+        setActive(false);
+    }, [times]);
+
     useEffect( () => {
         if(isActive){
             refInterval.current = setInterval(
