@@ -33,10 +33,17 @@ const BPrecordTab = () => {
         ))
     }
 
+    const deletePressure = (index) => {
+        setPressures(prev=>(
+            prev.filter((val, key) => (key!==index))
+        ));
+    }
+
     return (
         <div className="record">
             <Tab
                 onCreate={createPressure}
+                onDelete={deletePressure}
                 titles={
                     pressures.map((val, key) => (
                         `${key}차 측정`
