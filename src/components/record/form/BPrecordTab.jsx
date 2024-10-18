@@ -21,9 +21,22 @@ const BPrecordTab = () => {
         setPressures(newPressures);
     }
 
+    const createPressure = () => {
+        setPressures(prev=>(
+            [
+                ...prev,
+                {
+                    systolic : '',
+                    diastolic : ''
+                }
+            ]
+        ))
+    }
+
     return (
         <div className="record">
             <Tab
+                onCreate={createPressure}
                 titles={
                     pressures.map((val, key) => (
                         `${key}차 측정`

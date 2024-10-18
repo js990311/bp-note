@@ -5,8 +5,23 @@ import './Tab.css';
 
 const Tab = ({titles, children, onDelete, onCreate}) => {
     const [activeTab, setActiveTab] = useState(0);
-    
+    const lastAction = useRef('INIT');
+
+    useEffect(
+        () => {
+            if(lastAction.current === 'DELETE'){
+                if(activeTab === children.length){
+                    setActiveTab(prev=>(prev-1));
+                }
+            }else if(lastAction.current === 'ADD'){
+                setActiveTab(children.length-1);
+            }
+        }
+        , [children]
+    )
+
     const onDeleteTab = (index) => {
+        lastAction.current = 'DELETE';
         onDelete(index);
     }
 
@@ -15,6 +30,7 @@ const Tab = ({titles, children, onDelete, onCreate}) => {
     }
 
     const onCreateTab = () => {
+        lastAction.current = 'ADD';
         onCreate();
     }
 
