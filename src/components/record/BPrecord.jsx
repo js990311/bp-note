@@ -2,8 +2,15 @@ import { useState } from "react";
 import BPrecordForm from "./form/BPrecordForm";
 import Tab from "../global/tab/Tab";
 import BPTimer from "./timer/BPTimer";
+import InputDate from "../global/input/InputDate";
 
 const BPRecord = () => {
+    const [date, setDate] = useState('');
+
+    const onChangeDate = (date) =>{
+        setDate(date);
+    }
+
     const [pressures, setPressures] = useState([
         {
             systolic : '',
@@ -44,6 +51,10 @@ const BPRecord = () => {
         <div className="record">
             <BPTimer></BPTimer>
             <div>
+                <InputDate
+                    value={date}
+                    onChange={onChangeDate}
+                ></InputDate>
                 <Tab
                     onCreate={createPressure}
                     onDelete={deletePressure}

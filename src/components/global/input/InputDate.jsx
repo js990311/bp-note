@@ -4,22 +4,25 @@ const getDate = () => {
     return new Date().toISOString().slice(0,10);
 }
 
-const InputDate = ({onUpdate}) => {
-    const [date, setDate] = useState(getDate());
+const getDateToString = (date) => {
+    return date.toISOString().slice(0,10);
+}
 
+const InputDate = ({value, onChange}) => {
+    
     useEffect(
         ()=>{
-            onUpdate(date);
-        }
-        ,[date]
-    );
+            console.log('import now time')
+            onChange(getDateToString(new Date()));
+        }, []
+    )
 
     return (
         <>
             <input type="date" 
-                value={date}
+                value={value}
                 onChange={(e)=>{
-                    setDate(e.target.value);
+                    onChange(e.target.value);
                 }}
             />
         </>
