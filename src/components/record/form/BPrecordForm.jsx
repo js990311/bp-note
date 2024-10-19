@@ -1,12 +1,10 @@
 import './BPrecordForm.css'
 
 const BPrecordForm = ({id, pressure, onUpdate}) => {
-    console.log(id, pressure);
     const {systolic, diastolic} = pressure; 
 
     const onChange = (e) => {
         const {name, value} = e.target;
-        console.log(name, value);
         onUpdate({
             ...pressure,
             [name] : value

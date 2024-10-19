@@ -6,16 +6,10 @@ import InputDate from "../global/input/InputDate";
 import InputTime from "../global/input/InputTime";
 
 const BPRecord = () => {
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-
-    const onChangeDate = (date) =>{
-        setDate(date);
-    }
-
-    const onChangeTime = (time) => {
-        setTime(time);
-    }
+    const [dateTime, setDateTime] = useState({
+        date : '',
+        time : ''
+    });
 
     const [pressures, setPressures] = useState([
         {
@@ -27,6 +21,13 @@ const BPRecord = () => {
             diastolic : ''
         }
     ]);
+
+    const onChangeDateTime = ({name, value}) => {
+        setDateTime({
+            [name] : value, 
+            ...dateTime
+        })
+    }
 
     const updatePressure = (pressure, index) => {
         console.log(pressure, index);
@@ -58,12 +59,14 @@ const BPRecord = () => {
             <BPTimer></BPTimer>
             <div>
                 <InputDate
-                    value={date}
-                    onChange={onChangeDate}
+                    name={'date'}
+                    value={dateTime.date}
+                    onChange={onChangeDateTime}
                 ></InputDate>
                 <InputTime
-                    value={time}
-                    onChange={onChangeTime}
+                    name={'time'}
+                    value={dateTime.time}
+                    onChange={onChangeDateTime}
                 ></InputTime>
                 <Tab
                     onCreate={createPressure}
@@ -88,6 +91,9 @@ const BPRecord = () => {
                     )}
                 </Tab>
             </div>
+            <button>
+                측정완료
+            </button>
         </div>
     )
 }

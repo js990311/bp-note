@@ -4,13 +4,15 @@ const getTimeToString = (time) => {
     return `${time.getHours()}:${time.getMinutes()}`;
 }
 
-const InputTime = ({value, onChange}) => {
+const InputTime = ({name, value, onChange}) => {
 
     useEffect(
         ()=>{
-            onChange(
-                getTimeToString(new Date())
-            );
+            console.log('123');
+            onChange({
+                name : 'time',
+                value : getTimeToString(new Date())
+            });
         }
         ,[]
     );
@@ -21,8 +23,13 @@ const InputTime = ({value, onChange}) => {
             <input 
                 type="time"  
                 value={value}
+                name={name}
                 onChange={(e)=>{
-                    onChange(e.target.value);
+                    const {name, value} = e.target;
+                    onChange({
+                        name : name,
+                        value : value
+                    });
                 }}
             />
         </>

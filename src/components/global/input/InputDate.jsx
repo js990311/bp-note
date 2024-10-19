@@ -1,19 +1,17 @@
-import { useEffect, useState } from "react";
-
-const getDate = () => {
-    return new Date().toISOString().slice(0,10);
-}
+import { useEffect } from "react";
 
 const getDateToString = (date) => {
     return date.toISOString().slice(0,10);
 }
 
-const InputDate = ({value, onChange}) => {
+const InputDate = ({name, value, onChange}) => {
     
     useEffect(
         ()=>{
-            console.log('import now time')
-            onChange(getDateToString(new Date()));
+            onChange({
+                name : 'date',
+                value : getDateToString(new Date())
+            });
         }, []
     )
 
@@ -21,8 +19,13 @@ const InputDate = ({value, onChange}) => {
         <>
             <input type="date" 
                 value={value}
+                name={name}
                 onChange={(e)=>{
-                    onChange(e.target.value);
+                    const {name, value} = e.target;
+                    onChange({
+                        name : name,
+                        value : value
+                    });
                 }}
             />
         </>
