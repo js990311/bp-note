@@ -3,12 +3,18 @@ import BPrecordForm from "./form/BPrecordForm";
 import Tab from "../global/tab/Tab";
 import BPTimer from "./timer/BPTimer";
 import InputDate from "../global/input/InputDate";
+import InputTime from "../global/input/InputTime";
 
 const BPRecord = () => {
     const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
 
     const onChangeDate = (date) =>{
         setDate(date);
+    }
+
+    const onChangeTime = (time) => {
+        setTime(time);
     }
 
     const [pressures, setPressures] = useState([
@@ -55,6 +61,10 @@ const BPRecord = () => {
                     value={date}
                     onChange={onChangeDate}
                 ></InputDate>
+                <InputTime
+                    value={time}
+                    onChange={onChangeTime}
+                ></InputTime>
                 <Tab
                     onCreate={createPressure}
                     onDelete={deletePressure}

@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-const getTime = () => {
-    const now = new Date();
-    return `${now.getHours()}:${now.getMinutes()}`;
+const getTimeToString = (time) => {
+    return `${time.getHours()}:${time.getMinutes()}`;
 }
 
-const InputTime = ({onUpdate}) => {
-    const [time, setTime] = useState(getTime());
+const InputTime = ({value, onChange}) => {
 
     useEffect(
         ()=>{
-            onUpdate(time);
+            onChange(
+                getTimeToString(new Date())
+            );
         }
-        ,[time]
+        ,[]
     );
 
 
@@ -20,9 +20,9 @@ const InputTime = ({onUpdate}) => {
         <>
             <input 
                 type="time"  
-                value={time}
+                value={value}
                 onChange={(e)=>{
-                    setTime(e.target.value);
+                    onChange(e.target.value);
                 }}
             />
         </>
