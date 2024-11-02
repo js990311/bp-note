@@ -3,7 +3,7 @@ import './App.css'
 import BPRecord from './components/record/BPrecord'
 import BPHome from './components/BPHome'
 import NotFound from './components/NotFound'
-import TodayRecord from './components/record/TodayRecord'
+import TodayRecord from './components/today/TodayRecord'
 import { RecordsProvider } from './components/record-context/BpRecordContext'
 
 function App() {

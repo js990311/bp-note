@@ -5,12 +5,12 @@ const mockData = [
         id: 1, 
         date: '2024-11-02', 
         am : {
-            time : '',
+            time : '10:33',
             systolic : 120.0,
             diastolic: 12
         },
         pm : { 
-            time : '',
+            time : '11:12',
             systolic : 120.0,
             diastolic: 12
         }
@@ -19,12 +19,12 @@ const mockData = [
         id: 2, 
         date: '2024-11-03', 
         am : {
-            time : '',
+            time : '11:13',
             systolic : 120.0,
             diastolic: 12
         },
         pm : { 
-            time : '',
+            time : '23:12',
             systolic : 120.0,
             diastolic: 12
         }
