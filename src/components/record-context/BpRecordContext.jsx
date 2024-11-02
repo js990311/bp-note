@@ -37,7 +37,7 @@ export const RecordsProvider = ({children}) => {
     return (
         <RecordsContext.Provider
             value={{
-                data: mockData
+                datas: mockData
             }}
         >
             {children}

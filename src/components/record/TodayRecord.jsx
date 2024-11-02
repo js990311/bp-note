@@ -9,12 +9,16 @@ const TodayRecord = () => {
 
     useEffect(
         () => {
-            const todayDate = datas.find((value)=>{
-                return value.date === date
-            })
-            setTodayRecords(todayDate);
+            try{
+                const todayDate = datas.find((value)=>{
+                    return value.date === date
+                })
+                setTodayRecords(todayDate);    
+            }catch(error){
+                console.log(error);
+            }
         }
-    ,[])
+    ,[date,datas]);
 
     return (
         <div>
