@@ -3,6 +3,7 @@ import './App.css'
 import BPRecord from './components/record/BPrecord'
 import BPHome from './components/BPHome'
 import NotFound from './components/NotFound'
+import TodayRecord from './components/record/TodayRecord'
 
 function App() {
   return (
@@ -11,6 +12,11 @@ function App() {
         <Route path='' element={<BPHome />}></Route>
         <Route path="/record" element={<BPRecord />}></Route>
         <Route path='*' element={<NotFound />}></Route>
+        <Route 
+          path='/day/:date' element={
+            <TodayRecord />
+          }
+        />
       </Routes>
     </div>
   )
