@@ -1,9 +1,9 @@
-import { createContext } from "react";
+import { Children, createContext } from "react";
 
 const mockData = [
     {
         id: 1, 
-        date: 123, 
+        date: '2024-11-02', 
         am : {
             time : '',
             systolic : 120.0,
@@ -17,7 +17,7 @@ const mockData = [
     },
     {
         id: 2, 
-        date: 123, 
+        date: '2024-11-03', 
         am : {
             time : '',
             systolic : 120.0,
@@ -31,5 +31,17 @@ const mockData = [
     }
 ];
 
-const bpRecord = createContext();
+export const RecordsContext = createContext();
+
+export const RecordsProvider = ({children}) => {
+    return (
+        <RecordsContext.Provider
+            value={{
+                data: mockData
+            }}
+        >
+            {children}
+        </RecordsContext.Provider>
+    )
+}
 
