@@ -12,7 +12,7 @@ function App() {
       <RecordsProvider>
         <Routes>
           <Route path='' element={<BPHome />}></Route>
-          <Route path="/record" element={<BPRecord />}></Route>
+          <Route path="/record/:date/:ampm" element={<BPRecord />}></Route>
           <Route path='*' element={<NotFound />}></Route>
           <Route 
             path='/day/:date' element={  

@@ -4,10 +4,12 @@ import Tab from "../global/tab/Tab";
 import BPTimer from "./timer/BPTimer";
 import InputDate from "../global/input/InputDate";
 import InputTime from "../global/input/InputTime";
+import { useParams } from "react-router-dom";
 
 const BPRecord = () => {
+    const {date, ampm} = useParams();
     const [dateTime, setDateTime] = useState({
-        date : '',
+        date : date,
         time : ''
     });
 

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { RecordsContext } from "../record-context/BpRecordContext";
 import TodayBp from "./TodayBp";
 
@@ -10,8 +10,10 @@ const TodayRecord = () => {
         id: null,
         date: date, 
         am : {
+            time: ''
         },
         pm : { 
+            time: ''
         }
     });
 
@@ -36,7 +38,7 @@ const TodayRecord = () => {
             <div>
                 {
                     todayRecord.am.time===''
-                    ? <div>데이터가 없습니다</div> 
+                    ? <Link to={`/record/${date}/am`}>측정하러 가기</Link>  
                     : <TodayBp 
                         am = {true}
                         record={todayRecord.am}
@@ -46,9 +48,9 @@ const TodayRecord = () => {
             <div>
             {
                     todayRecord.pm.time===''
-                    ? <div>데이터가 없습니다</div> 
+                    ? <Link to={`/record/${date}/am`}>측정하러 가기</Link> 
                     : <TodayBp 
-                        pm = {true}
+                        pm= {true}
                         record={todayRecord.am}
                     />
                 }

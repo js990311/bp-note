@@ -8,7 +8,6 @@ const InputTime = ({name, value, onChange}) => {
 
     useEffect(
         ()=>{
-            console.log('123');
             onChange({
                 name : 'time',
                 value : getTimeToString(new Date())
