@@ -1,4 +1,4 @@
-import { Children, createContext } from "react";
+import { createContext } from "react";
 
 const mockData = [
     {
@@ -6,13 +6,29 @@ const mockData = [
         date: '2024-11-02', 
         am : {
             time : '10:33',
-            systolic : 120.0,
-            diastolic: 12
+            pressures : [
+                {
+                    systolic : 120.0,
+                    diastolic: 12        
+                },
+                {
+                    systolic : 120.0,
+                    diastolic: 12        
+                }
+            ]
         },
         pm : { 
             time : '11:12',
-            systolic : 120.0,
-            diastolic: 12
+            pressures : [
+                {
+                    systolic : 120.0,
+                    diastolic: 12        
+                },
+                {
+                    systolic : 120.0,
+                    diastolic: 12        
+                }
+            ]
         }
     },
     {
@@ -20,13 +36,29 @@ const mockData = [
         date: '2024-11-03', 
         am : {
             time : '11:13',
-            systolic : 120.0,
-            diastolic: 12
+            pressures : [
+                {
+                    systolic : 120.0,
+                    diastolic: 12        
+                },
+                {
+                    systolic : 120.0,
+                    diastolic: 12        
+                }
+            ]
         },
         pm : { 
             time : '23:12',
-            systolic : 120.0,
-            diastolic: 12
+            pressures : [
+                {
+                    systolic : 120.0,
+                    diastolic: 12        
+                },
+                {
+                    systolic : 120.0,
+                    diastolic: 12        
+                }
+            ]
         }
     }
 ];
