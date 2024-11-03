@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const TodayBp = ({record, am, pm}) => {
     const isAm = am===true ? true : false;

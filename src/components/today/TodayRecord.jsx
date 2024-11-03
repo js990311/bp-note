@@ -19,6 +19,7 @@ const TodayRecord = () => {
 
     useEffect(
         () => {
+            console.log(datas);
             try{
                 let todayDate = datas.find((value)=>{
                     return value.date === date

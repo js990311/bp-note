@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import BPrecordForm from "./form/BPrecordForm";
 import Tab from "../global/tab/Tab";
 import BPTimer from "./timer/BPTimer";
 import InputDate from "../global/input/InputDate";
 import InputTime from "../global/input/InputTime";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { RecordsContext } from "../record-context/BpRecordContext";
 
 const BPRecord = () => {
     const {date, ampm} = useParams();
+    const {addData} = useContext(RecordsContext);
     const [dateTime, setDateTime] = useState({
         date : date,
         time : ''
@@ -55,6 +57,17 @@ const BPRecord = () => {
         ));
     }
 
+    const saveDate = () => {
+        console.log('save data');
+        addData({
+            time: dateTime.time,
+            pressures : pressures
+        },{
+            date: date, 
+            am : ampm === 'am'
+        });
+    }
+
 
     return (
         <div className="record">
@@ -93,9 +106,10 @@ const BPRecord = () => {
                     )}
                 </Tab>
             </div>
-            <button>
+            <button onClick={saveDate}>
                 측정완료
             </button>
+            <Link to={`/day/${date}`}>오늘기록보기</Link>
         </div>
     )
 }
