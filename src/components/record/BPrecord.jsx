@@ -9,11 +9,8 @@ import { RecordsContext } from "../record-context/BpRecordContext";
 
 const BPRecord = () => {
     const {date, ampm} = useParams();
+    const [time, setTime] = useState('');
     const {addData} = useContext(RecordsContext);
-    const [dateTime, setDateTime] = useState({
-        date : date,
-        time : ''
-    });
 
     const [pressures, setPressures] = useState([
         {
@@ -25,13 +22,6 @@ const BPRecord = () => {
             diastolic : ''
         }
     ]);
-
-    const onChangeDateTime = ({name, value}) => {
-        setDateTime({
-            [name] : value, 
-            ...dateTime
-        })
-    }
 
     const updatePressure = (pressure, index) => {
         console.log(pressure, index);
@@ -60,7 +50,7 @@ const BPRecord = () => {
     const saveDate = () => {
         console.log('save data');
         addData({
-            time: dateTime.time,
+            time: time,
             pressures : pressures
         },{
             date: date, 
@@ -73,15 +63,10 @@ const BPRecord = () => {
         <div className="record">
             <BPTimer></BPTimer>
             <div>
-                <InputDate
-                    name={'date'}
-                    value={dateTime.date}
-                    onChange={onChangeDateTime}
-                ></InputDate>
                 <InputTime
                     name={'time'}
-                    value={dateTime.time}
-                    onChange={onChangeDateTime}
+                    value={time}
+                    onChange={({name, value})=>{setTime(value)}}
                 ></InputTime>
                 <Tab
                     onCreate={createPressure}
