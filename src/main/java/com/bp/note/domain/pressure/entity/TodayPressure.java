@@ -2,12 +2,14 @@ package com.bp.note.domain.pressure.entity;
 
 import com.bp.note.domain.user.entity.User;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 @Entity
 @Table(name = "today_pressures")
 public class TodayPressure {
@@ -19,7 +21,7 @@ public class TodayPressure {
      * 측정일자
      */
     @Column
-    private LocalDate measurementDate;
+    private LocalDate date;
 
     /**
      * 오전 측정시간
@@ -53,5 +55,22 @@ public class TodayPressure {
         this.user = user;
     }
 
+    /* 로직 */
+
+    public void record(Ampm session, LocalTime time){
+        if(session == Ampm.AM){
+            this.amTime = time;
+        }else {
+            this.pmTime = time;
+        }
+    }
+
+    /* 생성 */
+
+    public TodayPressure(){}
+
+    public TodayPressure(LocalDate date){
+        this.date = date;
+    }
 
 }

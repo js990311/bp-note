@@ -23,12 +23,12 @@ public class Pressure {
     /**
      * N차 시도
      */
-    @Column
+    @Column(name = "measure_order")
     private Integer order;
 
     @Enumerated(EnumType.STRING)
     @Column
-    private Ampm amPm;
+    private Ampm session;
 
     /* 관계 Pressure */
 
@@ -42,6 +42,17 @@ public class Pressure {
     public void mapTodayPressure(TodayPressure todayPressure){
         this.todayPressure = todayPressure;
         todayPressure.addPressure(this);
+    }
+
+    /* 생성 */
+    public Pressure(){}
+
+    public Pressure(Ampm session, Integer order, Double systolicPressure, Double diastolicPressure, TodayPressure todayPressure){
+        this.session = session;
+        this.order = order;
+        this.systolicPressure = systolicPressure;
+        this.diastolicPressure = diastolicPressure;
+        mapTodayPressure(todayPressure);
     }
 
 }
