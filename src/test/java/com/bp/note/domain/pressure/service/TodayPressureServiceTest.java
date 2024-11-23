@@ -1,5 +1,6 @@
 package com.bp.note.domain.pressure.service;
 
+import com.bp.note.domain.pressure.dto.TodayPressureDto;
 import com.bp.note.domain.pressure.entity.Ampm;
 import com.bp.note.domain.pressure.entity.TodayPressure;
 import com.bp.note.domain.pressure.form.PressureMeasurementForm;
@@ -50,6 +51,41 @@ class TodayPressureServiceTest {
         assertEquals(date, todayPressure.getDate());
         assertEquals(amTime.truncatedTo(ChronoUnit.SECONDS), todayPressure.getAmTime().truncatedTo(ChronoUnit.SECONDS));
         assertEquals(pmTime.truncatedTo(ChronoUnit.SECONDS), todayPressure.getPmTime().truncatedTo(ChronoUnit.SECONDS));
+    }
+
+    @Test
+    public void findByDate(){
+        LocalDate date = LocalDate.now();
+        LocalTime amTime = LocalTime.now();
+        LocalTime pmTime = LocalTime.now();
+        List<PressureMeasurementForm> forms = new ArrayList<>();
+        for(int i=0;i<2;i++){
+            forms.add(new PressureMeasurementForm(i, 120.0, 80.0));
+        }
+        todayPressureService.recordPressure(date, Ampm.AM, amTime, forms);
+        todayPressureService.recordPressure(date, Ampm.PM, pmTime, forms);
+
+        TodayPressureDto pressure = todayPressureService.findByDate(date);
+
+        assertEquals(
+                date,pressure.getDate()
+        );
+        assertEquals(
+                amTime.truncatedTo(ChronoUnit.SECONDS),
+                pressure.getAm().getTime().truncatedTo(ChronoUnit.SECONDS)
+        );
+        assertEquals(
+                pmTime.truncatedTo(ChronoUnit.SECONDS),
+                pressure.getPm().getTime().truncatedTo(ChronoUnit.SECONDS)
+        );
+        assertEquals(
+                forms.size(),
+                pressure.getAm().getPressures().size()
+        );
+        assertEquals(
+                forms.size(),
+                pressure.getPm().getPressures().size()
+        );
     }
 
 }

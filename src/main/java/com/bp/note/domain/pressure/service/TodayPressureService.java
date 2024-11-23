@@ -1,11 +1,13 @@
 package com.bp.note.domain.pressure.service;
 
+import com.bp.note.domain.pressure.dto.TodayPressureDto;
 import com.bp.note.domain.pressure.entity.Ampm;
 import com.bp.note.domain.pressure.entity.Pressure;
 import com.bp.note.domain.pressure.entity.TodayPressure;
 import com.bp.note.domain.pressure.form.PressureMeasurementForm;
 import com.bp.note.domain.pressure.repository.PressureRepository;
 import com.bp.note.domain.pressure.repository.TodayPressureRepository;
+import com.bp.note.domain.pressure.repository.query.PressureQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,7 @@ import java.util.Optional;
 public class TodayPressureService {
     private final TodayPressureRepository todayPressureRepository;
     private final PressureRepository pressureRepository;
+    private final PressureQueryRepository pressureQueryRepository;
 
     /* Create */
     @Transactional
@@ -37,6 +40,9 @@ public class TodayPressureService {
     }
 
     /* Read */
+    public TodayPressureDto findByDate(LocalDate date){
+        return pressureQueryRepository.findByDate(date);
+    }
 
     /* Update */
 
