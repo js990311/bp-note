@@ -20,9 +20,9 @@ public class Pressure {
     @Column
     private Double diastolicPressure;
 
-    @Column
-    private LocalTime measurementTime;
-
+    /**
+     * N차 시도
+     */
     @Column
     private Integer order;
 
