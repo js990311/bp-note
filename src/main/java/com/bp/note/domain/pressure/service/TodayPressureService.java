@@ -1,5 +1,6 @@
 package com.bp.note.domain.pressure.service;
 
+import com.bp.note.domain.pressure.dto.MonthlyAveragePressureDto;
 import com.bp.note.domain.pressure.dto.TodayPressureDto;
 import com.bp.note.domain.pressure.entity.Ampm;
 import com.bp.note.domain.pressure.entity.Pressure;
@@ -42,6 +43,10 @@ public class TodayPressureService {
     /* Read */
     public TodayPressureDto findByDate(LocalDate date){
         return pressureQueryRepository.findByDate(date);
+    }
+
+    public MonthlyAveragePressureDto queryByMonth(int year, int month){
+        return pressureQueryRepository.findByMonth(year, month);
     }
 
     /* Update */

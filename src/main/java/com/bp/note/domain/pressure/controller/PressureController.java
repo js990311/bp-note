@@ -1,5 +1,6 @@
 package com.bp.note.domain.pressure.controller;
 
+import com.bp.note.domain.pressure.dto.MonthlyAveragePressureDto;
 import com.bp.note.domain.pressure.dto.TodayPressureDto;
 import com.bp.note.domain.pressure.form.PressureRecordForm;
 import com.bp.note.domain.pressure.service.TodayPressureService;
@@ -30,5 +31,13 @@ public class PressureController {
                 form.getPressures()
         );
         return pressureService.findByDate(form.getDate());
+    }
+
+    @GetMapping("/record")
+    public MonthlyAveragePressureDto getRecordByMonth(
+            @RequestParam("year") int year,
+            @RequestParam("month") int month
+    ){
+        return pressureService.queryByMonth(year, month);
     }
 }
